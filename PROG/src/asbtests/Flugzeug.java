@@ -1,3 +1,5 @@
+//Christophs erste Verion 
+
 package asbtests;
 
 import java.util.Scanner;
@@ -77,7 +79,7 @@ public class Flugzeug {
         if (verbrauch != 0) {
             reichweite = kerosinVorrat * reiseGeschw / verbrauch;
         } else {
-            System.out.println("Dein Flugzeug verbraucht also nix? Du hast gerade die Welt gerettet!! Glückwunsch!!");
+            System.out.println("Dein Flugzeug verbraucht also nix? Du hast gerade die Welt gerettet!! Glï¿½ckwunsch!!");
         }
 
         return reichweite;
@@ -130,7 +132,7 @@ public class Flugzeug {
         System.out.println("b zum beladen");
         System.out.println("t zum tanken");
         System.out.println("q zum beenden");
-        System.out.println("i für info");
+        System.out.println("i fï¿½r info");
         System.out.println(">>");
         input = scanner.nextLine();
 
@@ -148,14 +150,14 @@ public class Flugzeug {
         // System.out.println("b zum beladen");
         // System.out.println("t zum tanken");
         // System.out.println("q zum beenden");
-        // System.out.println("i für info");
+        // System.out.println("i fï¿½r info");
         // System.out.println(">>");
         // input = albatros.scanner.nextLine();
 
         while (!albatros.input.equalsIgnoreCase("q")) {
 
             if (albatros.input.equalsIgnoreCase("t")) {
-                System.out.println("Wieviel Liter möchtest du tanken? (Nur Zahlen bitte...sei nett ;)");
+                System.out.println("Wieviel Liter mï¿½chtest du tanken? (Nur Zahlen bitte...sei nett ;)");
                 System.out.println(">>");
                 albatros.input = albatros.scanner.nextLine();
 
