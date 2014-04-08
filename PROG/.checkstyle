@@ -4,7 +4,10 @@
   <local-check-config name="Trier in line" location="CheckstyleConfig2.xml" type="project" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="Trier in line" local="true">
+  <local-check-config name="Trier New Line {" location="CheckstyleConfig1.xml" type="project" description="">
+    <additional-data name="protect-config-file" value="false"/>
+  </local-check-config>
+  <fileset name="all" enabled="true" check-config-name="Trier New Line {" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

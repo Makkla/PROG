@@ -1,235 +1,216 @@
-//Christophs erste Verion 
+public class Flugzeug
+{
 
-package asbtests;
+	private double maxGewicht;
 
-import java.util.Scanner;
+	private double leerGewicht;
 
-public class Flugzeug {
+	private double ladungGewicht;
 
-    private double maxGewicht, leerGewicht, ladungGewicht, reiseGeschw,
-    flugStunden, verbrauch, tankKapazitaet, kerosinVorrat;
+	private double reiseGeschw;
 
-    private Scanner scanner;
+	private double flugStunden;
 
-    private String input;
+	private double verbrauch;
 
-    public Flugzeug(double maxGewicht, double leerGewicht, double ladungGewicht, double reiseGeschw, double flugStunden, double verbrauch, double tankKapazitaet, double kerosinVorrat) {
-        this.maxGewicht = maxGewicht;
-        this.leerGewicht = leerGewicht;
-        this.ladungGewicht = ladungGewicht;
-        this.reiseGeschw = reiseGeschw;
-        this.flugStunden = flugStunden;
-        this.verbrauch = verbrauch;
-        this.tankKapazitaet = tankKapazitaet;
+	private double tankKapazitaet;
 
-        scanner = new Scanner(System.in);
-        input = "";
+	private double kerosinVorrat;
 
-        if (kerosinVorrat > tankKapazitaet) {
-            this.kerosinVorrat = tankKapazitaet;
-        } else {
-            this.kerosinVorrat = kerosinVorrat;
-        }
+	public Flugzeug(double maxGewicht, double leerGewicht, double ladungGewicht, double reiseGeschw, double flugStunden, double verbrauch, double tankKapazitaet, double kerosinVorrat)
+	{
 
-    }
+		this.maxGewicht = maxGewicht;
+		this.leerGewicht = leerGewicht;
+		this.ladungGewicht = ladungGewicht;
+		this.reiseGeschw = reiseGeschw;
+		this.flugStunden = flugStunden;
+		this.verbrauch = verbrauch;
+		this.tankKapazitaet = tankKapazitaet;
 
-    public double getMaxGewicht() {
-        return maxGewicht;
-    }
+		if (kerosinVorrat > tankKapazitaet)
+		{
+			this.kerosinVorrat = tankKapazitaet;
+		}
+		else
+		{
+			this.kerosinVorrat = kerosinVorrat;
+		}
+	}
 
-    public double getLeerGewicht() {
-        return leerGewicht;
-    }
+	public double getMaxGewicht()
+	{
+		return maxGewicht;
+	}
 
-    public double getLadungsGewicht() {
-        return ladungGewicht;
-    }
+	public double getLeerGewicht()
+	{
+		return leerGewicht;
+	}
 
-    public double getReiseGeschw() {
-        return reiseGeschw;
-    }
+	public double getLadungGewicht()
+	{
+		return ladungGewicht;
+	}
 
-    public double getFlugStunden() {
-        return flugStunden;
-    }
+	public double getReiseGeschw()
+	{
+		return reiseGeschw;
+	}
 
-    public double getVerbrauch() {
-        return verbrauch;
-    }
+	public double getFlugStunden()
+	{
+		return flugStunden;
+	}
 
-    public double getTankKapazitaet() {
-        return tankKapazitaet;
-    }
+	public double getVerbrauch()
+	{
+		return verbrauch;
+	}
 
-    public double getKerosinVorrat() {
-        return kerosinVorrat;
-    }
+	public double getTankKapazitaet()
+	{
+		return tankKapazitaet;
+	}
 
-    public double getGesamtGewicht() {
+	public double getKerosinVorrat()
+	{
+		return kerosinVorrat;
+	}
 
-        double gesamtGewicht = leerGewicht + ladungGewicht + kerosinVorrat * 0.8;
+	public double getGesamtGewicht()
+	{
 
-        return gesamtGewicht;
-    }
+		double gesamtGewicht = leerGewicht + ladungGewicht + kerosinVorrat * 0.8;
 
-    public double getReichweite() {
+		return gesamtGewicht;
+	}
 
-        double reichweite = 0;
+	public double getReichweite()
+	{
 
-        if (verbrauch != 0) {
-            reichweite = kerosinVorrat * reiseGeschw / verbrauch;
-        } else {
-            System.out.println("Dein Flugzeug verbraucht also nix? Du hast gerade die Welt gerettet!! Glï¿½ckwunsch!!");
-        }
+		double reichweite = kerosinVorrat / verbrauch * reiseGeschw;
 
-        return reichweite;
+		return reichweite;
+	}
 
-    }
+	public boolean fliegen(double km)
+	{
 
-    public boolean fliegen(double km) {
+		if (km <= 0)
+		{
+			return false;
+		}
 
-        if (getReichweite() < km || getGesamtGewicht() > maxGewicht) {
-            return false;
-        } else {
-            flugStunden = km / reiseGeschw;
-            kerosinVorrat = kerosinVorrat - flugStunden * verbrauch;
-            return true;
-        }
-    }
+		if (this.getReichweite() < km || this.getGesamtGewicht() > maxGewicht)
+		{
+			// System.out.println("Reichweite: " + this.getReichweite());
+			System.out.println("nicht geflogen");
+			return false;
 
-    public void tanken(double liter) {
+		}
+		else
+		{
 
-        if (liter > 0 && liter + kerosinVorrat <= tankKapazitaet || liter < 0 && liter + kerosinVorrat >= 0) {
-            kerosinVorrat += liter;
-            System.out.println("Das Flugzeug wurde mit " + liter + " betankt. (oder entleert, war zu faul das noch zu unterscheiden ;) )");
-        }
+			// System.out.println("Reichweite: " + this.getReichweite());
+			flugStunden = flugStunden + km / reiseGeschw;
 
-    }
+			kerosinVorrat = kerosinVorrat - verbrauch * km / reiseGeschw;
+			System.out.println("geflogen");
+			return true;
+		}
 
-    public boolean laden(double kg) {
+	}
 
-        if (kg > 0 && kg + ladungGewicht <= maxGewicht || kg < 0 && kg >= ladungGewicht) {
-            ladungGewicht += kg;
-            System.out.println("Das Flugzeug wurde mit " + kg + " beladen. (oder entladen, war zu faul  ;) )");
-            return true;
-        }
+	public void tanken(double liter)
+	{
 
-        else {
-            System.out.println("Zuviel, Alter!");
-            return false;
+		double k = kerosinVorrat;
 
-        }
-    }
+		if (liter > 0)
+		{
 
-    public void info() {
-        System.out.println("Gesamtgewicht: " + getGesamtGewicht());
-        System.out.println("Tankinhalt: " + kerosinVorrat);
-        System.out.println("Flugstunden: " + flugStunden);
-    }
+			while (kerosinVorrat < k + liter && kerosinVorrat < tankKapazitaet)
+			{
 
-    public void menu() {
-        System.out.println("l zum losfliegen");
-        System.out.println("b zum beladen");
-        System.out.println("t zum tanken");
-        System.out.println("q zum beenden");
-        System.out.println("i fï¿½r info");
-        System.out.println(">>");
-        input = scanner.nextLine();
+				kerosinVorrat++;
 
-    }
+			}
+			System.out.println("getankt");
+		}
+		else
+		{
 
-    public static void main(String[] args) {
+			while (kerosinVorrat > k + liter && kerosinVorrat > 0)
+			{
 
-        Flugzeug albatros = new Flugzeug(70000, 35000, 10000, 800, 500, 2500, 25000, 8000);
+				kerosinVorrat--;
 
-        System.out.println("Albatros steht im Hangar bereit! Was willst du machen?");
-        System.out.println();
+			}
+			System.out.println("abgelassen");
+		}
 
-        albatros.menu();
-        // System.out.println("l zum losfliegen");
-        // System.out.println("b zum beladen");
-        // System.out.println("t zum tanken");
-        // System.out.println("q zum beenden");
-        // System.out.println("i fï¿½r info");
-        // System.out.println(">>");
-        // input = albatros.scanner.nextLine();
+	}
 
-        while (!albatros.input.equalsIgnoreCase("q")) {
+	public boolean laden(double kg)
+	{
 
-            if (albatros.input.equalsIgnoreCase("t")) {
-                System.out.println("Wieviel Liter mï¿½chtest du tanken? (Nur Zahlen bitte...sei nett ;)");
-                System.out.println(">>");
-                albatros.input = albatros.scanner.nextLine();
+		if (this.getGesamtGewicht() + kg > maxGewicht)
+		{
 
-                if (Double.parseDouble(albatros.input) > 0 && Double.parseDouble(albatros.input) + albatros.kerosinVorrat <= albatros.tankKapazitaet || Double.parseDouble(albatros.input) < 0 && Double.parseDouble(albatros.input) + albatros.kerosinVorrat >= 0) {
-                    albatros.tanken(Double.parseDouble(albatros.input));
-                    System.out.println();
-                    albatros.menu();
-                } else {
-                    System.out.println("Geht nicht! (Frag nicht!)");
-                    System.out.println();
-                    albatros.menu();
-                }
-            }
+			return false;
 
-            if (albatros.input.equalsIgnoreCase("b")) {
-                System.out.println("Wieviel KG willst du be-/entladen?");
-                System.out.println(">>");
-                albatros.input = albatros.scanner.nextLine();
-                albatros.laden(Double.parseDouble(albatros.input));
-                System.out.println();
-                albatros.menu();
-            }
+		}
 
-            if (albatros.input.equalsIgnoreCase("i")) {
-                albatros.info();
-                System.out.println();
+		if (ladungGewicht + kg < 0)
+		{
 
-                albatros.menu();
-            }
+			ladungGewicht = 0;
 
-            if (albatros.input.equalsIgnoreCase("q")) {
-                System.exit(0);
-            }
+			return true;
 
-            if (albatros.input.equalsIgnoreCase("l")) {
-                System.out.println("Wie weit in Km?");
-                System.out.println(">>");
-                albatros.input = albatros.scanner.nextLine();
+		}
+		else
+		{
 
-                if (albatros.fliegen(Double.parseDouble(albatros.input)) == true) {
-                    System.out.println("Los geht's");
-                    System.out.println();
-                    albatros.menu();
-                } else {
-                    System.out.println("Keine Starterlaubnis erteilt!");
-                }
-                System.out.println();
-                albatros.menu();
-            }
+			ladungGewicht = ladungGewicht + kg;
 
-        }
+			return true;
 
-        // albatros.laden(1500);
-        //
-        // if(albatros.fliegen(3000)== true)
-        // System.out.println("Los geht's");
-        // else
-        // System.out.println("Keine Starterlaubnis erteilt!");
-        //
-        // System.out.println();
-        //
-        // albatros.tanken(10000);
-        //
-        //
-        // if(albatros.fliegen(3000)== true)
-        // System.out.println("Los geht's");
-        // else
-        // System.out.println("Keine Starterlaubnis erteilt!");
-        //
-        // System.out.println();
-        // albatros.info();
-        //
-    }
+		}
 
+	}
+
+	public void info()
+	{
+
+		System.out.println("Flugstundenzähler: " + flugStunden);
+		System.out.println("Tankinhalt: " + kerosinVorrat);
+		System.out.println("Gesamtgewicht: " + this.getGesamtGewicht());
+
+	}
+
+	public static void main(String[] args)
+	{
+
+		Flugzeug albatros = new Flugzeug(70000.0, 35000.0, 10000.0, 800.0, 500.0, 2500.0, 25000.0, 8000.0);
+
+		albatros.info();
+		// albatros.laden(1500);
+		//
+		// albatros.info();
+		// albatros.fliegen(3000);
+		// albatros.info();
+		// albatros.tanken(10000);
+		// albatros.info();
+
+		System.out.println("Reichweite: " + albatros.getReichweite());
+
+		albatros.fliegen(750);
+
+		System.out.println("Reichweite: " + albatros.getReichweite());
+
+		albatros.info();
+
+	}
 }
