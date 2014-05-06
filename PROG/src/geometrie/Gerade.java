@@ -1,51 +1,55 @@
 package geometrie;
 
-public class Gerade {
-	
+public class Gerade
+{
+
 	private Punkt endPos;
+
 	private Punkt startPos;
-	
-	
-	public Gerade(Punkt start, Punkt ende){
+
+	public Gerade(Punkt start, Punkt ende)
+	{
 		endPos = ende;
 		startPos = start;
 	}
-	
-	public Punkt getEndPos(){
+
+	public Punkt getEndPos()
+	{
 		return endPos;
+
 	}
-	
-	public Punkt getStartPos(){
+
+	public Punkt getStartPos()
+	{
 		return startPos;
 	}
-	
-	public void setEndPos(Punkt endPos){
-		this.endPos=endPos;
+
+	public void setEndPos(Punkt endPos)
+	{
+		this.endPos = endPos;
 	}
-	
-	public void setStartPos(Punkt startPos){
+
+	public void setStartPos(Punkt startPos)
+	{
 		this.startPos = startPos;
 	}
-	
-	public double laenge(){
+
+	public double laenge()
+	{
 		double l = startPos.abstand(endPos);
 		return l;
 	}
-	
-	public boolean istLaengerAls(Gerade g2){
-		
-		if (this.laenge() > g2.laenge())
-			return true;
-		else
-			return false;
+
+	public boolean istLaengerAls(Gerade g2)
+	{
+
+		return this.laenge() > g2.laenge();
 	}
-	
-	public boolean equals(Gerade g2){
-		
-		if (startPos.equals(g2.startPos) && endPos.equals(g2.endPos))
-			return true;
-		else
-			return false;
+
+	public boolean equals(Gerade g2)
+	{
+
+		return startPos.equals(g2.startPos) && endPos.equals(g2.endPos);
 	}
 
 }
