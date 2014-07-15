@@ -4,7 +4,7 @@ public class Sort
 {
 	public static void bubbleSort(int[] list)
 	{
-		for (int i = list.length; i > 0; i--)
+		for (int i = list.length - 1; i > 0; i--)
 		{
 			Sort.bubbleUp(list, 0, i);
 		}
@@ -12,21 +12,21 @@ public class Sort
 
 	public static void bubbleSort(int[] list, int leftIdx, int rightIdx)
 	{
-		if (rightIdx > leftIdx || rightIdx < 0 || leftIdx < 0 || rightIdx > list.length || leftIdx > list.length)
+		if (rightIdx < leftIdx || rightIdx < 0 || leftIdx < 0 || rightIdx > list.length - 1 || leftIdx > list.length - 1)
 		{
 			throw new IllegalArgumentException("Illegal Arguments");
 		}
 
 		for (int i = rightIdx; i > leftIdx; i--)
 		{
-			Sort.bubbleUp(list, 0, i);
+			Sort.bubbleUp(list, leftIdx, i);
 		}
 
 	}
 
 	public static void bubbleUp(int[] list, int leftIdx, int i)
 	{
-		if (i < 0 || leftIdx < 0 || i > list.length || leftIdx > list.length)
+		if (i < 0 || leftIdx < 0 || i > list.length - 1 || leftIdx > list.length - 1)
 		{
 			throw new IllegalArgumentException("Illegal Arguments");
 		}
@@ -35,7 +35,7 @@ public class Sort
 		{
 			if (list[j] > list[i])
 			{
-				Sort.swap(list, list[j], list[i]);
+				Sort.swap(list, j, i);
 			}
 		}
 
@@ -53,12 +53,38 @@ public class Sort
 
 	public static int divide(int[] list, int leftIdx, int rightIdx)
 	{
+
+		// if (i < 0 || leftIdx < 0 || i > list.length - 1 || leftIdx >
+		// list.length - 1)
+		// {
+		// throw new IllegalArgumentException("Illegal Arguments");
+		// }
+
+		int rightCurrentPos = rightIdx;
+		for (int i = leftIdx; i < list.length; i++)
+		{
+
+			if (list[i] >= list[rightIdx])
+			{
+				for (; rightCurrentPos < 0; rightCurrentPos--)
+				{
+					if (list[rightCurrentPos] < list[rightIdx])
+					{
+						swap(list, i, rightCurrentPos);
+						break;
+					}
+
+				}
+			}
+
+		}
+
 		return 1;
 	}
 
 	public static void swap(int[] list, int i, int j)
 	{
-		if (i < 0 || j < 0 || i > list.length || j > list.length)
+		if (i < 0 || j < 0 || i > list.length - 1 || j > list.length - 1)
 		{
 			throw new IllegalArgumentException("Illegal Arguments");
 		}
@@ -72,7 +98,7 @@ public class Sort
 
 	public static String toString(int[] list, int start, int end)
 	{
-		if (end > start || end < 0 || start < 0 || end > list.length || start > list.length)
+		if (end > start || end < 0 || start < 0 || end > list.length - 1 || start > list.length - 1)
 		{
 			throw new IllegalArgumentException("Illegal Arguments");
 		}

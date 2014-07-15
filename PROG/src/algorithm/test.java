@@ -6,15 +6,23 @@ public class test
 	public static void main(String[] args)
 	{
 		int[] array =
-		{ 1, 4, 5, 3, 8, 2, };
+		{ 10, 9, 8, 7, 6, 0, 4, 3, 2, 1, 5 };
 
 		String stingered = new String(Sort.toString(array));
-
 		System.out.println(stingered);
 
-		Sort.bubbleSort(array);
+		Sort.divide(array, 0, 9);
 
+		//
+
+		//
+		// Sort.bubbleSort(array, 1, 12);
+		//
 		System.out.println(Sort.toString(array));
+
+		// Sort.swap(array, 5, 9);
+		//
+		// System.out.println(Sort.toString(array));
 
 	}
 }
