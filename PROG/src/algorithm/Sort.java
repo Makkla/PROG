@@ -33,9 +33,9 @@ public class Sort
 
 		for (int j = leftIdx; j < i; j++)
 		{
-			if (list[j] > list[i])
+			if (list[j] > list[j + 1])
 			{
-				Sort.swap(list, j, i);
+				Sort.swap(list, j, j + 1);
 			}
 		}
 
@@ -44,42 +44,73 @@ public class Sort
 	public static void quickSort(int[] list)
 	{
 
+		Sort.quickSort(list, 0, list.length - 1);
+
 	}
 
 	public static void quickSort(int[] list, int leftIdx, int rightIdx)
 	{
+
+		if (leftIdx < rightIdx)
+		{
+			if (leftIdx < 0 || rightIdx < 0 || leftIdx > list.length - 1 || rightIdx > list.length - 1)
+			{
+				throw new IllegalArgumentException("Illegal Arguments");
+			}
+
+			int pivotIndex = Sort.divide(list, leftIdx, rightIdx);
+
+			Sort.quickSort(list, leftIdx, pivotIndex - 1);
+			Sort.quickSort(list, pivotIndex + 1, rightIdx);
+
+		}
 
 	}
 
 	public static int divide(int[] list, int leftIdx, int rightIdx)
 	{
 
-		// if (i < 0 || leftIdx < 0 || i > list.length - 1 || leftIdx >
-		// list.length - 1)
-		// {
-		// throw new IllegalArgumentException("Illegal Arguments");
-		// }
+		if (leftIdx < 0 || rightIdx < 0 || leftIdx > list.length - 1 || rightIdx > list.length - 1)
+		{
+			throw new IllegalArgumentException("Illegal Arguments");
+		}
 
-		int rightCurrentPos = rightIdx;
-		for (int i = leftIdx; i < list.length; i++)
+		int i = leftIdx;
+		int j = rightIdx - 1;
+		int pivotIndex = rightIdx;
+		int pivotValue = list[rightIdx];
+
+		for (; i < j;)
 		{
 
-			if (list[i] >= list[rightIdx])
+			while (list[i] < pivotValue & i < rightIdx)
 			{
-				for (; rightCurrentPos < 0; rightCurrentPos--)
-				{
-					if (list[rightCurrentPos] < list[rightIdx])
-					{
-						swap(list, i, rightCurrentPos);
-						break;
-					}
+				i++;
+			}
 
+			while (list[j] >= pivotValue & j > leftIdx)
+			{
+				if (j > 0)
+				{
+
+					j--;
 				}
+			}
+
+			if (i < j)
+			{
+				swap(list, i, j);
+
 			}
 
 		}
 
-		return 1;
+		if (list[i] > pivotValue)
+		{
+			swap(list, i, pivotIndex);
+		}
+
+		return i;
 	}
 
 	public static void swap(int[] list, int i, int j)
