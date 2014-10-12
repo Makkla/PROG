@@ -1,0 +1,6 @@
+Antwort auf Frage d1:
+
+Ich habe notifyAll verwendet.
+Man hätte notify verwenden können, dann hätte man aber nur jeweils einen zufälligen Thread geweckt, der an der Ample wartet.
+Ich wollte, dass alle wartenden Autos überprüfen, ob sie vor einer grünen Ampel stehen und weiterfahren können. 
+So können auch mehrere vor der gleichen Ampel wartenden Autos diese passieren.
