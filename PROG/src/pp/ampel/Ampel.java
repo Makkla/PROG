@@ -3,51 +3,51 @@ package pp.ampel;
 public class Ampel
 {
 
-	private boolean isGreen;
+    private boolean isGreen;
 
-	public Ampel()
-	{
+    public Ampel()
+    {
 
-		isGreen = false;
-		System.out.println("neue Ampel erzeugt");
-	}
+        isGreen = false;
+        System.out.println("neue Ampel erzeugt");
+    }
 
-	public synchronized void schalteGruen()
-	{
+    public synchronized void schalteGruen()
+    {
 
-		isGreen = true;
-		notifyAll();
+        isGreen = true;
+        notifyAll();
 
-	}
+    }
 
-	public synchronized void schalteRot()
-	{
+    public synchronized void schalteRot()
+    {
 
-		isGreen = false;
+        isGreen = false;
 
-	}
+    }
 
-	public synchronized void passieren()
-	{
+    public synchronized void passieren()
+    {
 
-		while (!isGreen)
-		{
+        while (!isGreen)
+        {
 
-			try
-			{
-				System.out.println("Auto muss warten");
-				wait();
-			}
-			catch (InterruptedException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+            try
+            {
+                System.out.println("Auto muss warten");
+                wait();
+            }
+            catch (InterruptedException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
 
-			}
-		}
-		System.out.println("Auto darf passieren");
-		// notifyAll();
+            }
+        }
+        System.out.println("Auto darf passieren");
+        // notifyAll();
 
-	}
+    }
 
 }
