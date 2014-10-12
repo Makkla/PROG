@@ -1,6 +1,5 @@
 package pp.ampel;
 
-
 public class AmpelSteuerung extends Thread
 {
 
@@ -39,11 +38,11 @@ public class AmpelSteuerung extends Thread
 				if (x == 0)
 				{
 
-					ampeln[i].setRed();
+					ampeln[i].schalteRot();
 					System.out.println("Ampel #" + i + " auf rot gesetzt.");
 					try
 					{
-						sleep(100);
+						sleep(1000);
 					}
 					catch (InterruptedException e)
 					{
@@ -54,11 +53,11 @@ public class AmpelSteuerung extends Thread
 				}
 				else
 				{
-					ampeln[i].setGreen();
+					ampeln[i].schalteGruen();
 					System.out.println("Ampel #" + i + " auf gruen gesetzt.");
 					try
 					{
-						sleep(100);
+						sleep(1000);
 					}
 					catch (InterruptedException e)
 					{

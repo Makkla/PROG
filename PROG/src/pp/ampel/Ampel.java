@@ -9,10 +9,10 @@ public class Ampel
 	{
 
 		isGreen = false;
-		System.out.println("neue Ampel erzeugt: #");
+		System.out.println("neue Ampel erzeugt");
 	}
 
-	public synchronized void setGreen()
+	public synchronized void schalteGruen()
 	{
 
 		isGreen = true;
@@ -20,7 +20,7 @@ public class Ampel
 
 	}
 
-	public synchronized void setRed()
+	public synchronized void schalteRot()
 	{
 
 		isGreen = false;
